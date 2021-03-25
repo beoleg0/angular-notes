@@ -1,1 +1,18 @@
-<router-outlet></router-outlet>
+<mat-toolbar>
+  <mat-toolbar-row>
+    <h1>Angular Notes</h1>
+    <div class="links">
+      <a mat-button
+         routerLink="/">Главная</a>
+      <a mat-button
+         routerLink="settings">Настройки</a>
+    </div>
+    <a color="accent"
+       mat-flat-button
+       routerLink="create-note">Создать заметку</a>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
