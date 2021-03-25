@@ -1,3 +1,24 @@
-<p>
-  single-note-page works!
-</p>
+<section>
+
+  <div class="d-flex align-items-center">
+    <h2>Title</h2>
+    <div class="spacer"></div>
+    <div>
+      <a [routerLink]="['/edit-note', '10']"
+         mat-icon-button
+         matTooltip="Редактировать заметку">
+        <mat-icon>edit</mat-icon>
+      </a>
+      <button mat-icon-button
+              matTooltip="Удалить заметку">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, cupiditate error expedita, fugit in incidunt
+    itaque modi placeat quia recusandae rem similique sunt totam, ut vero? Dignissimos natus recusandae tenetur.
+  </p>
+
+</section>

@@ -20,7 +20,7 @@ const routes: Routes = [
     component: CreateNotePageComponent
   },
   {
-    path: 'edit-note',
+    path: 'edit-note/:id',
     component: EditNotePageComponent
   },
   {

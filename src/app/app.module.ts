@@ -8,6 +8,7 @@ import {EditNotePageComponent} from './pages/edit-note-page/edit-note-page.compo
 import {SingleNotePageComponent} from './pages/single-note-page/single-note-page.component';
 import {SettingsPageComponent} from './pages/settings-page/settings-page.component';
 import {SharedModule} from './shared/shared.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {SharedModule} from './shared/shared.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule
   ],

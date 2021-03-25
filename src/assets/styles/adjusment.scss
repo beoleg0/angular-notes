@@ -85,5 +85,13 @@ label, button, input, select {
 }
 
 .spacer {
-  flex: 1 1 100%;
+  flex: 1 1 80%;
+}
+
+.caption {
+  font-size: 12px;
+}
+
+.input-container {
+  margin-bottom: 16px;
 }
