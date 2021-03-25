@@ -8,7 +8,7 @@ import {SettingsPageComponent} from './pages/settings-page/settings-page.compone
 
 const routes: Routes = [
   {
-    path: '/',
+    path: '',
     component: NotesPageComponent
   },
   {
