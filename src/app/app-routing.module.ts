@@ -8,7 +8,7 @@ import {SettingsPageComponent} from './pages/settings-page/settings-page.compone
 
 const routes: Routes = [
   {
-    path: '/',
+    path: '',
     component: NotesPageComponent
   },
   {
@@ -20,7 +20,7 @@ const routes: Routes = [
     component: CreateNotePageComponent
   },
   {
-    path: 'edit-note',
+    path: 'edit-note/:id',
     component: EditNotePageComponent
   },
   {
