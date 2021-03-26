@@ -1,13 +1,9 @@
-<a [routerLink]="['notes', '10']"
+<a [routerLink]="['notes', id]"
    class="card"
    mat-ripple>
 
-  <div class="card__title">Title</div>
+  <div class="card__title">{{title}}</div>
 
-  <p class="card__content">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus aliquid dicta dolores
-    eaque nihil nisi numquam, odio praesentium sint soluta tempore ullam, velit voluptate voluptatibus. Commodi,
-    ea, rem. Fugiat!
-  </p>
+  <p class="card__content">{{content}}</p>
 
 </a>

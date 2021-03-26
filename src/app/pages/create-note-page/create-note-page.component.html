@@ -1,15 +1,22 @@
 <section>
   <h2>Cоздать заметку</h2>
 
-  <form>
+  <form (ngSubmit)="createNote()"
+        [formGroup]="createNoteForm">
 
     <div class="input-container">
       <mat-form-field appearance="fill"
                       class="w-100">
         <mat-label>Название заметки</mat-label>
-        <input matInput
+        <input formControlName="title"
+               matInput
                placeholder="Начните вводить название заметки">
         <mat-hint>Введите название заметки</mat-hint>
+        <mat-error>
+          <div *ngIf="createNoteForm.get('title').errors?.required">
+            Поле должно быть заполнено
+          </div>
+        </mat-error>
       </mat-form-field>
     </div>
 
@@ -17,16 +24,23 @@
       <mat-form-field appearance="fill"
                       class="w-100">
         <mat-label>Текст заметки</mat-label>
-        <textarea matInput
+        <textarea formControlName="content"
+                  matInput
                   matTextareaAutosize
                   placeholder="Начните вводить текст заметки"></textarea>
         <mat-hint>Введите текс заметки</mat-hint>
+        <mat-error>
+          <div *ngIf="createNoteForm.get('content').errors?.required">
+            Поле должно быть заполнено
+          </div>
+        </mat-error>
       </mat-form-field>
     </div>
 
     <div class="d-flex">
       <div class="spacer"></div>
-      <button color="accent"
+      <button [disabled]="createNoteForm.invalid"
+              color="accent"
               mat-flat-button
               type="submit">Создать заметку
       </button>

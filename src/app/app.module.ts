@@ -9,6 +9,8 @@ import {SingleNotePageComponent} from './pages/single-note-page/single-note-page
 import {SettingsPageComponent} from './pages/settings-page/settings-page.component';
 import {SharedModule} from './shared/shared.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

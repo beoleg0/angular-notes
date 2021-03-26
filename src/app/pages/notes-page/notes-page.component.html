@@ -1,21 +1,21 @@
 <section>
   <h2>Главная</h2>
 
-  <div class="row cards-list">
-    <div class="col-4 cards-list__item">
-      <app-card></app-card>
-    </div>
-    <div class="col-4">
-      <app-card></app-card>
-    </div>
-    <div class="col-4">
-      <app-card></app-card>
-    </div>
-    <div class="col-4">
-      <app-card></app-card>
-    </div>
-    <div class="col-4">
-      <app-card></app-card>
+  <div *ngIf="notes.length; else noNotes">
+    <div class="row cards-list">
+      <div *ngFor="let note of notes"
+           class="col-4 cards-list__item">
+        <app-card
+          [content]="note.content"
+          [id]="note.id"
+          [title]="note.title">
+        </app-card>
+      </div>
     </div>
   </div>
+
+  <ng-template #noNotes>
+    <p>Заметок пока нет</p>
+  </ng-template>
+
 </section>
