@@ -3,6 +3,8 @@ import {Observable} from 'rxjs';
 
 export class FirebaseStrategy implements IStrategy {
 
+  public readonly STRATEGY_ID = 'FIREBASE';
+
   create<T>(path: string, body: T): Observable<T> {
     return undefined;
   }

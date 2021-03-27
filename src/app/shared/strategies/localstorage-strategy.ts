@@ -3,6 +3,8 @@ import {Observable, of} from 'rxjs';
 
 export class LocalstorageStrategy implements IStrategy {
 
+  public readonly STRATEGY_ID = 'LOCALSTORAGE';
+
   create<T>(path: string, body: T): Observable<T> {
     const items = this.getItems(path);
     items.push(body);

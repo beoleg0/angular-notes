@@ -2,6 +2,8 @@ import {Observable} from 'rxjs';
 
 export interface IStrategy {
 
+  readonly STRATEGY_ID?: string;
+
   getAll<T>(path: string): Observable<T>;
 
   getSingle<T>(path: string, id: string): Observable<T>;
