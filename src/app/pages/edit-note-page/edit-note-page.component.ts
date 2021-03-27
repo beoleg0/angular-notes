@@ -47,7 +47,7 @@ export class EditNotePageComponent implements OnInit {
       ...this.note,
       ...this.editNoteForm.value
     };
-    console.log(updatedNote);
+
     this.noteService.update(id, updatedNote)
       .subscribe(
         () => {

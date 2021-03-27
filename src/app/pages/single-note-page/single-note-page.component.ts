@@ -4,6 +4,7 @@ import {INote} from '../../shared/entities/note';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {switchMap} from 'rxjs/operators';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AppValidators} from '../../shared/validators/app-validators';
 
 @Component({
   selector: 'app-single-note-page',
@@ -13,6 +14,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class SingleNotePageComponent implements OnInit {
 
   note: INote;
+  noteId = '';
   commentForm: FormGroup;
 
   constructor(
@@ -22,7 +24,9 @@ export class SingleNotePageComponent implements OnInit {
   ) {
     this.commentForm = new FormGroup({
       author: new FormControl('', [
-        Validators.required
+        Validators.required,
+        AppValidators.fullName,
+        AppValidators.startsFromCapital
       ]),
       content: new FormControl('', Validators.required)
     });
@@ -32,7 +36,8 @@ export class SingleNotePageComponent implements OnInit {
     this.route.params
       .pipe(
         switchMap((params: Params) => {
-          return this.noteService.getSingle(params.id);
+          this.noteId = params.id;
+          return this.noteService.getSingle(this.noteId);
         })
       )
       .subscribe(
@@ -42,10 +47,10 @@ export class SingleNotePageComponent implements OnInit {
       );
   }
 
-  addComment() {
+  addComment(id: string) {
     const comment = {
       ...this.commentForm.value,
-      createdAt: new Date()
+      createdAt: new Date().toString()
     };
 
     const updatedNote = {
@@ -53,9 +58,17 @@ export class SingleNotePageComponent implements OnInit {
       comments: [...this.note.comments, comment]
     };
 
-    this.noteService.update(this.note.id, updatedNote)
-      .subscribe(() => {
-        this.note.comments.push(comment);
+    this.noteService.update(id, updatedNote)
+      .subscribe((res) => {
+        if (!!res) {
+          this.note.comments.push(comment);
+        }
+
+        // После reset форма остаетется invalid, не нашел решения
+        this.commentForm.reset({
+          author: '',
+          content: ''
+        });
       });
   }
 

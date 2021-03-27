@@ -19,7 +19,7 @@ export class LocalstorageStrategy implements IStrategy {
     return of(items);
   }
 
-  getAll<T>(path: string): Observable<T> {
+  getAll<T>(path: string): Observable<T[]> {
     const items = this.getItems(path);
     return of(items);
   }

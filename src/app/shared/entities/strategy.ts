@@ -4,7 +4,7 @@ export interface IStrategy {
 
   readonly STRATEGY_ID?: string;
 
-  getAll<T>(path: string): Observable<T>;
+  getAll<T>(path: string): Observable<T[]>;
 
   getSingle<T>(path: string, id: string): Observable<T>;
 
@@ -15,3 +15,5 @@ export interface IStrategy {
   delete<T>(path: string, id: string): Observable<T>;
 
 }
+
+export type strategyType = 'LOCALSTORAGE' | 'FIREBASE';

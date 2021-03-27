@@ -1,15 +1,15 @@
 <section>
 
   <div class="d-flex align-items-center">
-    <h2>{{note.title}}</h2>
+    <h2>{{note?.title}}</h2>
     <div class="spacer"></div>
     <div>
-      <a [routerLink]="['/edit-note', note.id]"
+      <a [routerLink]="['/edit-note', noteId]"
          mat-icon-button
          matTooltip="Редактировать заметку">
         <mat-icon>edit</mat-icon>
       </a>
-      <button (click)="deleteNote(note.id)"
+      <button (click)="deleteNote(noteId)"
               mat-icon-button
               matTooltip="Удалить заметку">
         <mat-icon>delete</mat-icon>
@@ -18,10 +18,10 @@
   </div>
 
   <p>
-    {{note.content}}
+    {{note?.content}}
   <p>
 
-  <form (ngSubmit)="addComment()"
+  <form (ngSubmit)="addComment(noteId)"
         [formGroup]="commentForm"
         class="mt-5">
 
@@ -38,6 +38,12 @@
         <mat-error>
           <div *ngIf="commentForm.get('author').errors?.required">
             Поле должно быть заполнено
+          </div>
+          <div *ngIf="commentForm.get('author').errors?.fullName">
+            В поле должны быть указаны имя и фамили через пробел
+          </div>
+          <div *ngIf="commentForm.get('author').errors?.startsFromCapital">
+            Имя и фамилия должны начинаться с большой буквы
           </div>
         </mat-error>
       </mat-form-field>
@@ -71,7 +77,7 @@
 
   </form>
 
-  <div *ngIf="note.comments.length"
+  <div *ngIf="note?.comments.length"
        class="comments-list">
     <div *ngFor="let comment of note.comments"
          class="comments-list__item mb-4">
