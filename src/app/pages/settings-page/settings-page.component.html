@@ -3,6 +3,8 @@
 
   <div>
     <mat-slide-toggle
+      (change)="changeStorageStrategy($event)"
+      [checked]="strategy === 'FIREBASE'"
       color="primary">
       Сохранять данные в Firebase
     </mat-slide-toggle>

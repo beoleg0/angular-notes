@@ -1,15 +1,16 @@
 <section>
 
   <div class="d-flex align-items-center">
-    <h2>Title</h2>
+    <h2>{{note?.title}}</h2>
     <div class="spacer"></div>
     <div>
-      <a [routerLink]="['/edit-note', '10']"
+      <a [routerLink]="['/edit-note', noteId]"
          mat-icon-button
          matTooltip="Редактировать заметку">
         <mat-icon>edit</mat-icon>
       </a>
-      <button mat-icon-button
+      <button (click)="deleteNote(noteId)"
+              mat-icon-button
               matTooltip="Удалить заметку">
         <mat-icon>delete</mat-icon>
       </button>
@@ -17,8 +18,73 @@
   </div>
 
   <p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, cupiditate error expedita, fugit in incidunt
-    itaque modi placeat quia recusandae rem similique sunt totam, ut vero? Dignissimos natus recusandae tenetur.
-  </p>
+    {{note?.content}}
+  <p>
+
+  <form (ngSubmit)="addComment(noteId)"
+        [formGroup]="commentForm"
+        class="mt-5">
+
+    <h3>Комментарии</h3>
+
+    <div class="input-container">
+      <mat-form-field appearance="fill"
+                      class="w-100">
+        <mat-label>Имя и фамилия с большой буквы</mat-label>
+        <input formControlName="author"
+               matInput
+               placeholder="Начните вводить ваши имя и фамилию">
+        <mat-hint>Введите ваше имя и фамилию с большой буквы</mat-hint>
+        <mat-error>
+          <div *ngIf="commentForm.get('author').errors?.required">
+            Поле должно быть заполнено
+          </div>
+          <div *ngIf="commentForm.get('author').errors?.fullName">
+            В поле должны быть указаны имя и фамили через пробел
+          </div>
+          <div *ngIf="commentForm.get('author').errors?.startsFromCapital">
+            Имя и фамилия должны начинаться с большой буквы
+          </div>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="input-container">
+      <mat-form-field appearance="fill"
+                      class="w-100">
+        <mat-label>Комментарий</mat-label>
+        <textarea formControlName="content"
+                  matInput
+                  matTextareaAutosize
+                  placeholder="Начните вводить текст комментария"></textarea>
+        <mat-hint>Введите текс комментария</mat-hint>
+        <mat-error>
+          <div *ngIf="commentForm.get('content').errors?.required">
+            Поле должно быть заполнено
+          </div>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="d-flex">
+      <div class="spacer"></div>
+      <button [disabled]="commentForm.invalid"
+              color="accent"
+              mat-flat-button
+              type="submit">Отправить комментарий
+      </button>
+    </div>
+
+  </form>
+
+  <div *ngIf="note?.comments.length"
+       class="comments-list">
+    <div *ngFor="let comment of note.comments"
+         class="comments-list__item mb-4">
+      <h3 class="mb-2">{{comment.author}}</h3>
+      <p class="mt-0 mb-2">{{comment.content}}</p>
+      <div class="caption">{{comment.createdAt | date:'short'}}</div>
+    </div>
+  </div>
 
 </section>
