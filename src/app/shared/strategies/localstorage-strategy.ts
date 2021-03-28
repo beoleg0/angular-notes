@@ -1,5 +1,6 @@
 import {IStrategy} from '../entities/strategy';
 import {Observable, of} from 'rxjs';
+import {localStorageGet, localStorageSet} from '../utils/local-storage.utils';
 
 export class LocalstorageStrategy implements IStrategy {
 
@@ -8,14 +9,14 @@ export class LocalstorageStrategy implements IStrategy {
   create<T>(path: string, body: T): Observable<T> {
     const items = this.getItems(path);
     items.push(body);
-    localStorage.setItem(path, JSON.stringify(items));
+    localStorageSet(path, items);
     return of(body);
   }
 
   delete<T>(path: string, id: string): Observable<T> {
     let items = this.getItems(path);
     items = items.filter(item => item.id !== id);
-    localStorage.setItem(path, JSON.stringify(items));
+    localStorageSet(path, items);
     return of(items);
   }
 
@@ -34,12 +35,12 @@ export class LocalstorageStrategy implements IStrategy {
     const items = this.getItems(path);
     const index = items.findIndex(item => item.id === id);
     items.splice(index, 1, body);
-    localStorage.setItem(path, JSON.stringify(items));
+    localStorageSet(path, items);
     return of(items);
   }
 
   private getItems(path: string) {
-    let items = JSON.parse(localStorage.getItem(path));
+    let items = localStorageGet<any>(path);
     if (!items) {
       items = [];
     }

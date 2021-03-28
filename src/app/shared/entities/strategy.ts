@@ -16,4 +16,4 @@ export interface IStrategy {
 
 }
 
-export type strategyType = 'LOCALSTORAGE' | 'FIREBASE';
+export type storageStrategy = 'LOCALSTORAGE' | 'FIREBASE';

@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {StorageContextService} from '../../services/storage-context/storage-context.service';
+import {LocalStorageEnum} from '../../shared/enums/local-storage.enum';
+import {localStorageGet} from '../../shared/utils/local-storage.utils';
 
 @Component({
   selector: 'app-settings-page',
@@ -16,7 +18,7 @@ export class SettingsPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.strategy = JSON.parse(localStorage.getItem('storage-strategy'));
+    this.strategy = localStorageGet(LocalStorageEnum.storageStrategy);
   }
 
   changeStorageStrategy(e) {

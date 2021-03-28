@@ -16,7 +16,7 @@ export class NoteService {
   }
 
   getAll(): Observable<INote[]> {
-    return this.storageContextService.getAll<INote[]>(this.path);
+    return this.storageContextService.getAll<INote>(this.path);
   }
 
   getSingle(id: string): Observable<INote> {
