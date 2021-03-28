@@ -23,11 +23,11 @@ export class NoteService {
     return this.storageContextService.getSingle<INote>(this.path, id);
   }
 
-  create(body: INote) {
-    return this.storageContextService.create(this.path, body);
+  create(body: INote): Observable<INote> {
+    return this.storageContextService.create<INote>(this.path, body);
   }
 
-  update(id: string, body: INote) {
+  update(id: string, body: INote): Observable<INote[]> {
     return this.storageContextService.update(this.path, id, body);
   }
 

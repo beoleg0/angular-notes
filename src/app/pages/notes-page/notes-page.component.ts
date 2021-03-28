@@ -17,11 +17,9 @@ export class NotesPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.noteService.getAll().subscribe(
-      (notes) => {
-        this.notes = notes;
-      }
-    );
+    this.noteService.getAll().subscribe((notes) => {
+      this.notes = notes;
+    });
   }
 
 }

@@ -48,11 +48,8 @@ export class EditNotePageComponent implements OnInit {
       ...this.editNoteForm.value
     };
 
-    this.noteService.update(id, updatedNote)
-      .subscribe(
-        () => {
-          this.router.navigate(['notes', id]);
-        }
-      );
+    this.noteService.update(id, updatedNote).subscribe(() => {
+      this.router.navigate(['notes', id]);
+    });
   }
 }

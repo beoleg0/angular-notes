@@ -64,20 +64,25 @@ export class SingleNotePageComponent implements OnInit {
           this.note.comments.push(comment);
         }
 
-        // После reset форма остаетется invalid, не нашел решения
-        this.commentForm.reset({
-          author: '',
-          content: ''
-        });
+        this.resetForm();
       });
   }
 
   deleteNote(id: string) {
-    this.noteService.delete(id).subscribe(
-      () => {
-        this.router.navigate(['/']);
-      }
-    );
+    this.noteService.delete(id).subscribe(() => {
+      this.router.navigate(['/']);
+    });
+  }
+
+  resetForm() {
+    this.commentForm.reset({
+      author: '',
+      content: ''
+    });
+
+    for (const name of Object.keys(this.commentForm.controls)) {
+      this.commentForm.controls[name].setErrors(null);
+    }
   }
 
 }
